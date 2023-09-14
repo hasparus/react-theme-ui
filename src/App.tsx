@@ -1,3 +1,5 @@
+/** @jsxImportSource theme-ui */
+
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -18,6 +20,16 @@ function App() {
         >
           Learn React
         </a>
+        <div
+          sx={{
+            boxShadow: (theme) => theme.shadows[1]
+          }}
+        />
+        <div
+          sx={{
+            boxShadow: (theme) => theme.shadows.firstLevel
+          }}
+        />
       </header>
     </div>
   );
