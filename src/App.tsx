@@ -1,8 +1,25 @@
 /** @jsxImportSource theme-ui */
 
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+import {} from "@theme-ui/core";
+import { makeTheme } from "@theme-ui/css/utils";
+
+const theme = makeTheme({
+  shadows: {
+    firstLevel: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+  },
+});
+
+type MyTheme = typeof theme;
+
+declare module "@theme-ui/core" {
+  export interface UserThemes {
+    $: MyTheme;
+  }
+}
 
 function App() {
   return (
@@ -22,13 +39,13 @@ function App() {
         </a>
         <div
           sx={{
-            boxShadow: (theme) => theme.shadows[1]
+            boxShadow: (theme) => theme.shadows?.[1],
           }}
         />
         <div
-          sx={{
-            boxShadow: (theme) => theme.shadows.firstLevel
-          }}
+          sx={({ shadows }) => ({
+            boxShadow: shadows.firstLevel,
+          })}
         />
       </header>
     </div>
